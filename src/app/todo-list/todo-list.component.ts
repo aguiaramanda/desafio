@@ -43,15 +43,13 @@ export class TodoListComponent implements OnInit {
     }
   ];
 
-
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
 
-  verificarConcluido(status: any){
+  public verificarConcluido(status: string): boolean {
     if(status == 'C'){
       return true
     } else{
@@ -59,13 +57,13 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm){
-    let tarefa = new Tarefa(Guid.create(), form.value.title, 'I');
+  public onSubmit(form: NgForm){
+    const tarefa = new Tarefa(Guid.create(), form.value.title, 'I');
     this.tarefas.push(tarefa);
     form.resetForm();
   }
 
-  onCheck(id: any){
+  public onCheck(id: Guid): void{
     let tarefa = this.tarefas.filter(x=>x.id === id)[0];
     if(tarefa.status == 'C'){
       tarefa.status = 'I'
@@ -74,15 +72,12 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  onDelete(id: any){
+  public onDelete(id: Guid): void{
     let tarefa = this.tarefas.filter(x=>x.id === id)[0];
     let index = this.tarefas.indexOf(tarefa, 0);
     if(index > -1){
       this.tarefas.splice(index, 1);
     }
   }
-
-
-
 
 }
