@@ -1,1 +1,54 @@
-<app-todo-list></app-todo-list>
+<!--<app-todo-list></app-todo-list>-->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center mb-md-0 me-md-auto text-gray text-decoration-none">
+                    <span class="fs-12-px d-none d-sm-inline">
+                        Tarefas do Dia
+                    </span>
+                </a>
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-pink text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">
+                        Bruna Morris <br/> 
+                    </span>
+                </a>
+                
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start border-top-2-pink" id="menu">
+                    <li class="nav-item">
+                        <a routerLink="/home" class="nav-link align-middle px-0">
+                            <i class="bi bi-house-fill color-icon-home fs-20-px"></i>
+                            <span class="ms-1 d-none d-sm-inline text-gray span-menu">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/nova" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="bi bi-calendar-plus-fill color-icon-calendar-add fs-20-px"></i>
+                            <span class="ms-1 d-none d-sm-inline text-gray span-menu">Incluir Tarefas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/tarefas" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-calendar2-fill color-icon-calendar fs-20-px"></i>
+                            <span class="ms-1 d-none d-sm-inline text-gray span-menu">Tarefas</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/concluidas" class="nav-link px-0 align-middle">
+                            <i class="bi bi-calendar2-check-fill color-icon-calendar-check fs-20-px"></i>
+                            <span class="ms-1 d-none d-sm-inline text-gray span-menu">Tarefas Concluídas</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+        <div class="col py-3">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+
+

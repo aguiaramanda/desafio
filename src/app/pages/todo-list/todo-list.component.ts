@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; 
 import { Guid } from "guid-typescript";
 import { NgForm } from '@angular/forms';
 import { Tarefa } from 'src/models/todo.model';
@@ -43,14 +44,14 @@ export class TodoListComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(public router: Router) {}
 
   ngOnInit(): void {
   }
 
 
   public verificarConcluido(status: string): boolean {
-    if(status == 'C'){
+    if(status === 'C'){
       return true
     } else{
       return false
@@ -65,7 +66,7 @@ export class TodoListComponent implements OnInit {
 
   public onCheck(id: Guid): void{
     let tarefa = this.tarefas.filter(x=>x.id === id)[0];
-    if(tarefa.status == 'C'){
+    if(tarefa.status === 'C'){
       tarefa.status = 'I'
     } else {
       tarefa.status = 'C'
@@ -79,5 +80,4 @@ export class TodoListComponent implements OnInit {
       this.tarefas.splice(index, 1);
     }
   }
-
 }

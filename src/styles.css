@@ -5,6 +5,12 @@
 h2{
     color: pink;
 }
+h4{
+    color: white;
+}
+.font-weight-300{
+    font-weight: 300;
+}
 .padding-15{
     padding: 15px;
 }
@@ -23,6 +29,12 @@ h2{
 .margin-left-30{
     margin-left: 30px;
 }
+.margin-left-50{
+    margin-left: 50px;
+}
+.margin-bottom-40{
+    margin-bottom: 40px;
+}
 .border-bottom-2{
     border-bottom: 2px solid pink
 }
@@ -32,10 +44,80 @@ h2{
 .margin-right{
     margin-right: 4px;
 }
+.margin-right{
+    margin-right: 5px;
+}
+
 .concluidas{
     text-decoration: line-through;
 }
 .linha{
     border-bottom: 1px solid pink;
     padding-bottom: 12px;
+}
+.bg-pink{
+    background-color: #A18AFF;;
+}
+.bg-white{
+    background-color: #FFF;;
+}
+.text-pink{
+    color: #A18AFF;
+}
+.text-gray{
+    color: #5b5c5d;
+}
+.fs-12-px{
+    font-size: 12px;
+}
+.border-top-2-pink{
+    border-top: 2px solid #A18AFF;
+}
+.color-icon-home{
+    color: #fd99af;
+}
+.color-icon-calendar-add{
+    color: #3fd4f4;
+}
+.color-icon-calendar{
+    color: #fac608;
+}
+.color-icon-calendar-check{
+    color: gray;
+}
+.fs-20-px{
+    font-size: 20px;
+}
+.fs-tarefas{
+    color: gray;
+    font-size: 16px;
+    margin-left: 15px;
+}
+.span-menu{
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn-pink{
+    color: white;
+    background-color: #a18aff;
+    border-color: #a18aff;
+}
+.btn-pink:hover{
+    color: white;
+    background-color: #6140e7;
+    border-color: #6140e7
+}
+.btn-submit{
+    background-color: #e9ecef;
+    border-color: #ced4da;
+    color: #a18aff;
+}
+.btn-submit:hover{
+    background-color: #ced4da;
+    border-color: #ced4da;
+    color: #a18aff;
+}
+.icons-tarefas{
+    margin-right: 4px;
+    font-size: 9px;
 }
