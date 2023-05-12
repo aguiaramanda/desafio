@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { sortBy } from 'sort-by-typescript';
-import { Tarefa } from 'src/models/todo.model';
+import { Tarefa } from 'src/app/shared/models/todo.model';
 
 @Pipe({
   name: 'orderTodo'

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { Guid } from "guid-typescript";
 import { NgForm } from '@angular/forms';
-import { Tarefa } from 'src/models/todo.model';
+import { Tarefa } from 'src/app/shared/models/todo.model';
 
 @Component({
   selector: 'app-todo-list',
