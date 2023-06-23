@@ -1,19 +1,25 @@
 const express = require('express');
-const bodyparser = require('body-parser');
 const cors = require('cors');
-const pg = require('pg');
+const routers = require('./api/routers');
+const { sequelize } = require('./models');
+//const pg = require('pg');
 
 const app = express();
 
 app.use(cors());
-app.use(bodyparser.json());
+app.use(express.json());
+app.use('/', routers);
 
-app.use('/', (req, res) => { 
+sequelize.sync().then(() => {
+    console.log('Banco conectado.');
+});
+
+/*app.use('/', (req, res) => { 
     res.status(200).send('Ola')
-})
+});*/
 
 //Conexão com o banco
-const config = {
+/*const config = {
     host: 'localhost',
     user: 'postgres',
     password: 'postgres',
@@ -26,10 +32,11 @@ const client = new pg.Client(config);
 client.connect(err => {
     if (err) throw err;
     else {
-        console.log('Banco conectado.');
+        
     }
-});
+});*/
 
 app.listen(3000, () => {
     console.log('Conectado ao servidor...');
 });
+
