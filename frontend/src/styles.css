@@ -67,6 +67,9 @@ h4{
 .text-gray{
     color: #5b5c5d;
 }
+.text-white{
+    color: white;
+}
 .fs-12-px{
     font-size: 12px;
 }
@@ -108,14 +111,26 @@ h4{
     border-color: #6140e7
 }
 .btn-submit{
-    background-color: #e9ecef;
-    border-color: #ced4da;
-    color: #a18aff;
+    background-color: #3fd4f4;
+    border-color: #3fd4f4;
+    color: white;
 }
 .btn-submit:hover{
-    background-color: #ced4da;
-    border-color: #ced4da;
-    color: #a18aff;
+    background-color: #3fd4f4;
+    border-color: #3fd4f4;
+    color: white;
+}
+.btn-cancel{
+    background-color: #fd99af;
+    border-color: #fd99af;
+    margin-left: 5px;
+    color: white;
+}
+.btn-cancel:hover{
+    background-color: #fd99af;
+    border-color: #fd99af;
+    margin-left: 5px;
+    color: white;
 }
 .icons-tarefas{
     margin-right: 4px;

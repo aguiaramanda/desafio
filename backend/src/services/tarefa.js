@@ -17,10 +17,13 @@ class TarefaService{
         }
     }
 
-    async editDescricao(id, tarefaDTO){
+    async edit(id, tarefaDTO){
         try{
             await this.tarefa.update({
-                descricao: tarefaDTO.descricao
+                descricao: tarefaDTO.descricao,
+                concluido: tarefaDTO.concluido,
+                dataCriacao: tarefaDTO.dataCriacao,
+                dataConclusao: tarefaDTO.dataConclusao
             }, {
                 where: 
                     {id: id.id}

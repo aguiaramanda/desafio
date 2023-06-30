@@ -3,8 +3,10 @@ import { Guid } from "guid-typescript";
 export class Tarefa{
     constructor(
         public id: Guid,
-        public title: string,
-        public status: string
+        public descricao: string,
+        public concluido: boolean,
+        public dataCriacao: Date,
+        public dataConclusao: Date
     )
     {  }
 }

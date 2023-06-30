@@ -20,11 +20,11 @@ router.post('/add', async (req,res) => {
     }
 });
 
-router.post('/editdescricao/:id', async (req,res) => {
+router.post('/edit/:id', async (req,res) => {
     const { id } = req.params;
-    const { descricao } = req.body;
+    const { descricao, concluido, dataCriacao, dataConclusao } = req.body;
     try{
-        await tarefaService.edit({ id }, { descricao});
+        await tarefaService.edit({ id }, { descricao, concluido, dataCriacao, dataConclusao  });
         res.status(201).send('Tarefa alterada com sucesso.');
     }catch(erro){
         res.status(400).send('Não foi possível concluir a alteração.');
