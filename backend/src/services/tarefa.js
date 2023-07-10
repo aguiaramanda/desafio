@@ -8,6 +8,11 @@ class TarefaService{
         return tarefas;
     }
 
+    async getOne(id){
+        const tarefa = await this.tarefa.findByPk(id);
+        return tarefa;
+    }
+
     async add(tarefaDTO){
         try{
             await this.tarefa.create(tarefaDTO);
@@ -24,20 +29,6 @@ class TarefaService{
                 concluido: tarefaDTO.concluido,
                 dataCriacao: tarefaDTO.dataCriacao,
                 dataConclusao: tarefaDTO.dataConclusao
-            }, {
-                where: 
-                    {id: id.id}
-            });
-        }catch(erro){
-            console.error(erro.message);  
-            throw erro;
-        }
-    }
-
-    async editConcluido(id, tarefaDTO){
-        try{
-            await this.tarefa.update({
-                concluido: tarefaDTO.concluido
             }, {
                 where: 
                     {id: id.id}

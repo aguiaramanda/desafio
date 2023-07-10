@@ -10,35 +10,40 @@ router.get('/',async (req,res) => {
     res.status(200).json(tarefas);
 });
 
+router.get('/buscar/:id',async (req,res) => {
+    const tarefa = await tarefaService.getOne(req.params.id);
+    res.status(200).json(tarefa);
+});
+
 router.post('/add', async (req,res) => {
     const { descricao, concluido, dataCriacao } = req.body;
     try{
         await tarefaService.add({ descricao, concluido, dataCriacao });
-        res.status(201).send('Tarefa adicionada com sucesso.');
+        res.status(201).send();
     }catch(erro){
-        res.status(400).send('Não foi possível adicionar tarefa.');
+        res.status(400).send();
     }
 });
 
-router.post('/edit/:id', async (req,res) => {
+router.put('/edit/:id', async (req,res) => {
     const { id } = req.params;
     const { descricao, concluido, dataCriacao, dataConclusao } = req.body;
     try{
         await tarefaService.edit({ id }, { descricao, concluido, dataCriacao, dataConclusao  });
-        res.status(201).send('Tarefa alterada com sucesso.');
+        res.status(201).send();
     }catch(erro){
-        res.status(400).send('Não foi possível concluir a alteração.');
+        res.status(400).send();
     }
 })
 
-router.post('/editconcluido/:id', async (req,res) => {
+router.put('/editconcluido/:id', async (req,res) => {
     const { id } = req.params;
     const { concluido } = req.body;
     try{
-        await tarefaService.edit({ id }, { concluido});
-        res.status(201).send('Tarefa concluída com sucesso.');
+        await tarefaService.editConcluido({ id }, { concluido});
+        res.status(201).send();
     }catch(erro){
-        res.status(400).send('Não foi possível concluir a alteração.');
+        res.status(400).send();
     }   
 })
 
@@ -46,9 +51,9 @@ router.post('/delete/:id', async(req,res) => {
     const { id } = req.params;
     try{
         await tarefaService.del({ id });
-        res.status(201).send('Tarefa deletada com sucesso.');
+        res.status(201).send();
     }catch(erro){
-        res.status(400).send('Não foi possível deletar a tarefa.');
+        res.status(400).send();
     }
 })
 

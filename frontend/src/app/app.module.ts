@@ -12,6 +12,7 @@ import { FormTodoListComponent } from './pages/form-todo-list/form-todo-list.com
 import { ModalModule  } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.comp
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

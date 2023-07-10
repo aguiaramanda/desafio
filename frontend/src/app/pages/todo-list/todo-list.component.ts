@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router'; 
 import { Guid } from "guid-typescript";
 import { NgForm } from '@angular/forms';
+import { EMPTY, Observable, Subject } from 'rxjs';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { Tarefa } from 'src/app/shared/models/todo.model';
 import { TodolistService } from 'src/app/todolist.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,12 +18,23 @@ export class TodoListComponent implements OnInit {
 
   tarefas: Tarefa[] = [];
 
-  constructor(public router: Router, private service: TodolistService) {}
+  deleteModalRef!: BsModalRef;
+  @ViewChild('deleteModal', { static: true }) deleteModal: any;
+
+  tarefa$!: Observable<Tarefa[]>;
+  error$!: Subject<boolean>;
+
+  tarefaSelecionada!: Tarefa; 
+
+  constructor(
+    public router: Router, 
+    private service: TodolistService,
+    private route: ActivatedRoute,
+    private alertService: AlertModalService) {}
 
   ngOnInit() {
     this.service.listAllTodolist().subscribe(dados => this.tarefas = dados);
   }
-
 
   public verificarConcluido(concluido: boolean): boolean {
     if(concluido === true){
@@ -29,32 +44,49 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  public onCheck(id: Guid): void{
-    let tarefa = this.tarefas.filter(x=>x.id === id)[0];
-    if(tarefa.concluido === true){
-      tarefa.concluido = false
-    } else {
-      tarefa.concluido = true
-    }
+  onEdit(id: number) {
+    this.router.navigate(['editar', id]);
   }
 
-  
-  public onSubmit(form: NgForm){
-    console.log(form.value.concluido);
-    //this.service.add(form.value);
-
-    //const tarefa = new Tarefa(Guid.create(), form.value.descricao, form.value.concluido, form.value.dataCriacao, form.value.dataConclusao);
-    //this.tarefas.push(tarefa);
-    //form.resetForm();
+  onRefresh(){
+    this.service.listAllTodolist().subscribe(dados => this.tarefas = dados);
   }
 
- 
+  handleError() {
+    this.alertService.showAlertDanger('Erro ao carregar tarefas.');
+  }
 
-  /*public onDelete(id: Guid): void{
-    let tarefa = this.tarefas.filter(x=>x.id === id)[0];
-    let index = this.tarefas.indexOf(tarefa, 0);
-    if(index > -1){
-      this.tarefas.splice(index, 1);
-    }
-  }*/
+  onDelete(tarefa: Tarefa) {
+    this.tarefaSelecionada = tarefa;
+
+    const result$ = this.alertService.showConfirm('Confirmacao', 'Tem certeza que deseja remover a tarefa?');
+    result$.asObservable()
+    .pipe(
+      take(1),
+      switchMap(result => result ? this.service.delete(tarefa) : EMPTY)
+    )
+    .subscribe({
+      next: success => this.onRefresh(),
+      error: err => this.alertService.showAlertDanger('Erro ao remover a tarefa.')
+    });
+  }
+
+  onConfirmDelete() {
+    this.service.delete(this.tarefaSelecionada)
+    .subscribe({
+      next: success => {
+        this.onRefresh();
+        this.deleteModalRef.hide();
+      },
+      error: err => {
+        this.alertService.showAlertDanger('Erro ao remover curso. Tente novamente mais tarde.');
+        this.deleteModalRef.hide();
+      }
+
+    });
+  }
+
+  onDeclineDelete() {
+    this.deleteModalRef.hide();
+  }
 }

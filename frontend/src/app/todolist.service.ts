@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay, tap, take } from 'rxjs';
 import { Tarefa } from './shared/models/todo.model';
+import { delay, tap, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +20,30 @@ export class TodolistService {
         tap(console.log)
       );
   }
+  loadByID(id: any){
+    return this.httpClient.get<Tarefa>(this.apiUrl+'/buscar/'+id).pipe(take(1));
+  }
 
-  add(tarefa: any){
+  private add(tarefa: Tarefa){
     return this.httpClient.post(this.apiUrl+'/add', tarefa).pipe(take(1));
   }
 
+  private update(tarefa: Tarefa){
+    return this.httpClient.put(this.apiUrl+'/edit/'+tarefa.id, tarefa).pipe(take(1));
+  }
 
+  save(tarefa: Tarefa) {
+    if (tarefa.id) {
+      return this.update(tarefa);
+    }
+    return this.add(tarefa);
+  }
+
+  updateConcluido(tarefa: Tarefa){
+    return this.httpClient.put(this.apiUrl+'/editconcluido/'+tarefa.id, tarefa).pipe(take(1));
+  }
+
+  delete(tarefa: Tarefa) {
+    return this.httpClient.post(this.apiUrl+'/delete/'+tarefa.id, tarefa).pipe(take(1));
+  }
 }

@@ -132,6 +132,18 @@ h4{
     margin-left: 5px;
     color: white;
 }
+.btn-delete{
+    background-color: #fac608;
+    border-color: #fac608;
+    color: #FFF;
+    margin-left: 5px;
+}
+.btn-delete:hover{
+    background-color: #fac608;
+    border-color: #fac608;
+    color: #FFF;
+    margin-left: 5px;
+}
 .icons-tarefas{
     margin-right: 4px;
     font-size: 9px;
