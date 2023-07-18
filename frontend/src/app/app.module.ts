@@ -13,6 +13,9 @@ import { ModalModule  } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { DatePipe } from '@angular/common';
+import { TodolistRoutingModule } from './pages/todo-list/todolist-routing.module';
+import { FormRoutingModule } from './pages/form-todo-list/form-routing.module';
+import { HomeRoutingModule } from './pages/home/home-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TodolistRoutingModule,
+    FormRoutingModule,
+    HomeRoutingModule
   ],
   providers: [
     DatePipe

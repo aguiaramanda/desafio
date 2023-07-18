@@ -4,9 +4,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { TodoListComponent  } from './pages/todo-list/todo-list.component'; 
 import { FormTodoListComponent } from './pages/form-todo-list/form-todo-list.component';
 import { TodolistGuard } from './pages/form-todo-list/todolist.guard';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
+/*const routes: Routes = [
+  { path: '', component: HomeComponent }
   { path: 'home', component: HomeComponent },
   { path: 'tarefas', component: TodoListComponent},
   { path: 'nova', 
@@ -22,10 +23,9 @@ const routes: Routes = [
     } 
   },
   { path: 'concluidas', component: TodoListComponent}
-];
+];*/
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [CommonModule]
 })
 export class AppRoutingModule { }
