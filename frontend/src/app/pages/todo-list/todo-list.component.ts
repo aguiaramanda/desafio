@@ -44,19 +44,19 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  onEdit(id: number) {
+  public onEdit(id: number): void {
     this.router.navigate(['editar', id]);
   }
 
-  onRefresh(){
+  private onRefresh(): void {
     this.service.listAllTodolist().subscribe(dados => this.tarefas = dados);
   }
 
-  handleError() {
+  private handleError(): void {
     this.alertService.showAlertDanger('Erro ao carregar tarefas.');
   }
 
-  onDelete(tarefa: Tarefa) {
+  public onDelete(tarefa: Tarefa): void {
     this.tarefaSelecionada = tarefa;
 
     const result$ = this.alertService.showConfirm('Confirmacao', 'Tem certeza que deseja remover a tarefa?');
@@ -71,7 +71,7 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  onConfirmDelete() {
+  private onConfirmDelete(): void {
     this.service.delete(this.tarefaSelecionada)
     .subscribe({
       next: success => {
@@ -86,7 +86,7 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  onDeclineDelete() {
+  private onDeclineDelete(): void {
     this.deleteModalRef.hide();
   }
 }

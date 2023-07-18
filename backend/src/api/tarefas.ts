@@ -1,11 +1,11 @@
-const express = require('express');
+import express, { Request, Response} from 'express';
 const router = express.Router();
 const { tarefa } = require('../models');
 const TarefaService = require('../services/tarefa');
 
 const tarefaService = new TarefaService(tarefa);
 
-router.get('/',async (req,res) => {
+router.get('/',async (req: Request, res: Response) => {
     const tarefas = await tarefaService.getAll();
     res.status(200).json(tarefas);
 });
@@ -36,17 +36,6 @@ router.put('/edit/:id', async (req,res) => {
     }
 })
 
-router.put('/editconcluido/:id', async (req,res) => {
-    const { id } = req.params;
-    const { concluido } = req.body;
-    try{
-        await tarefaService.editConcluido({ id }, { concluido});
-        res.status(201).send();
-    }catch(erro){
-        res.status(400).send();
-    }   
-})
-
 router.post('/delete/:id', async(req,res) => {
     const { id } = req.params;
     try{
@@ -57,4 +46,4 @@ router.post('/delete/:id', async(req,res) => {
     }
 })
 
-module.exports = router;
+export default router

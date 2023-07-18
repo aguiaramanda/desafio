@@ -39,23 +39,23 @@ export class FormTodoListComponent implements OnInit {
     });
   }
 
-  formatDate(date: any) {
+  private formatDate(date: string): string | null{
     if(date !== null){
-      const str = date;
-      const [dateComponents, timeComponents] = str.split('T');
+      const [dateComponents, timeComponents] = date.split('T');
       return date = dateComponents;
     } else {
       return this.newDate();
     }
    }
 
-   newDate(){
-    const date = new Date();
-    const fromDate = this.datePipe.transform(date, 'yyyy-MM-dd');
+   private newDate(): string | null{
+    let date = new Date();
+    let fromDate!: string | null;
+    fromDate = this.datePipe.transform(date, 'yyyy-MM-dd');
     return fromDate;
    }
 
-  public onSubmit(){
+  public onSubmit(): void{
 
     let msgSuccess = 'Tarefa cadastrada com sucesso!';
     let msgError = 'Erro ao cadastrar tarefa, tente novamente!';
@@ -67,13 +67,13 @@ export class FormTodoListComponent implements OnInit {
     this.service.save(this.form.value).subscribe({
       next: success => {
         this.modal.showAlertSuccess(msgSuccess);
-        this.location.back();
+        this.form.reset();
       },
       error: err => this.modal.showAlertDanger(msgError)
     });
   }
 
-  public onCancel(){
+  public onCancel(): void{
     this.form.reset();
   }
 

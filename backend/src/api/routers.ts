@@ -1,11 +1,11 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
 const tarefasRouter = require('./tarefas');
 const router = express.Router();
 
-router.get('/', (req,res) => {
+router.get('/', (req: Request, res: Response) => {
     res.send('App Online!');
 });
 
 router.use('/tarefas', tarefasRouter);
 
-module.exports = router;
+export default router

@@ -13,14 +13,14 @@ export class TodolistService {
 
   constructor( private httpClient: HttpClient ) { }
 
-  listAllTodolist(){
+  public listAllTodolist(){
     return this.httpClient.get<Tarefa[]>(this.apiUrl)
       .pipe(
         delay(200),
         tap(console.log)
       );
   }
-  loadByID(id: any){
+  public loadByID(id: any){
     return this.httpClient.get<Tarefa>(this.apiUrl+'/buscar/'+id).pipe(take(1));
   }
 
@@ -32,18 +32,18 @@ export class TodolistService {
     return this.httpClient.put(this.apiUrl+'/edit/'+tarefa.id, tarefa).pipe(take(1));
   }
 
-  save(tarefa: Tarefa) {
+  public save(tarefa: Tarefa) {
     if (tarefa.id) {
       return this.update(tarefa);
     }
     return this.add(tarefa);
   }
 
-  updateConcluido(tarefa: Tarefa){
+  public updateConcluido(tarefa: Tarefa){
     return this.httpClient.put(this.apiUrl+'/editconcluido/'+tarefa.id, tarefa).pipe(take(1));
   }
 
-  delete(tarefa: Tarefa) {
+  public delete(tarefa: Tarefa) {
     return this.httpClient.post(this.apiUrl+'/delete/'+tarefa.id, tarefa).pipe(take(1));
   }
 }

@@ -1,4 +1,4 @@
-class TarefaService{
+/*class TarefaService{
     constructor(TarefaModel){
         this.tarefa = TarefaModel;
     }
@@ -49,4 +49,4 @@ class TarefaService{
     }
 }
 
-module.exports = TarefaService;
+export default TarefaService*/
